@@ -21,12 +21,47 @@
           </span>
         </a>
         <nav class="main-nav">
-          <a href="#services">Services</a>
-          <a href="#tech">Technology</a>
-          <a href="#team">Team</a>
-          <a href="#projects">Projects</a>
-          <a href="#why-us">Why Us</a>
-          <a href="#contact" class="btn btn-outline">Contact</a>
+          <a href="#about">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 6V10L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>About</span>
+          </a>
+          <a href="#services">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2L3 7V17H8V12H12V17H17V7L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Services</span>
+          </a>
+          <a href="#tech">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 7H13M7 10H13M7 13H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Technology</span>
+          </a>
+          <a href="#projects">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 8H17M7 12H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Projects</span>
+          </a>
+          <a href="#why-us">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 6V10L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Why Us</span>
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 4H17C17.5523 4 18 4.44772 18 5V15C18 15.5523 17.5523 16 17 16H3C2.44772 16 2 15.5523 2 15V5C2 4.44772 2.44772 4 3 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 5L10 10L18 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Contact</span>
+          </a>
         </nav>
         <button class="nav-toggle" aria-label="Open navigation">
           <span></span>
@@ -96,6 +131,29 @@
         </div>
       </section>
 
+      <section class="about" id="about">
+        <div class="section-background-image"></div>
+        <div class="section-overlay"></div>
+        <div class="container">
+          <div class="about-content">
+            <div class="about-image">
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="About DevLoop" />
+            </div>
+            <div class="about-text">
+              <p class="eyebrow about-eyebrow">ABOUT OUR COMPANY</p>
+              <h2>
+                Accelerating Business Growth Through <span class="highlight">Continuous Delivery</span>
+              </h2>
+              <div class="about-description">
+                <p>
+                  At DevLoop, our name defines our process. We are a modern software house built on the principle of continuous iteration and rapid delivery. We don't just write code; we establish a self-improving development lifecycle that translates complex ideas into market-ready applications faster and more reliably. Whether you are scaling an enterprise platform or launching a disruptive startup product, our commitment is to provide agile solutions that keep you ahead of the curve, ensuring your software evolves as quickly as your business demands.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="services" id="services">
         <div class="services-background-image"></div>
         <div class="services-overlay"></div>
@@ -114,6 +172,9 @@
             </button>
             <div class="services-grid" data-slider-track>
               <article class="service-card" data-service="web-app" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="service-image">
+                  <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Web Application Development" />
+                </div>
                 <div class="service-icon">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="48" height="48" rx="12" fill="url(#gradient1)"/>
@@ -134,6 +195,9 @@
                 <span class="service-learn-more">Click to learn more</span>
               </article>
               <article class="service-card" data-service="cloud" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="service-image">
+                  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cloud Solutions" />
+                </div>
                 <div class="service-icon">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="48" height="48" rx="12" fill="url(#gradient2)"/>
@@ -154,6 +218,9 @@
                 <span class="service-learn-more">Click to learn more</span>
               </article>
               <article class="service-card" data-service="api" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="service-image">
+                  <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="API Design & Integration" />
+                </div>
                 <div class="service-icon">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="48" height="48" rx="12" fill="url(#gradient3)"/>
@@ -180,6 +247,9 @@
                 <span class="service-learn-more">Click to learn more</span>
               </article>
               <article class="service-card" data-service="data-processing" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="service-image">
+                  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Processing & Automation" />
+                </div>
                 <div class="service-icon">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="48" height="48" rx="12" fill="url(#gradient4)"/>
@@ -203,6 +273,9 @@
                 <span class="service-learn-more">Click to learn more</span>
               </article>
               <article class="service-card" data-service="process-optimization" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="service-image">
+                  <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Process Optimization" />
+                </div>
                 <div class="service-icon">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="48" height="48" rx="12" fill="url(#gradient5)"/>
@@ -223,6 +296,9 @@
                 <span class="service-learn-more">Click to learn more</span>
               </article>
               <article class="service-card" data-service="devops" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="service-image">
+                  <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="DevOps & CI/CD" />
+                </div>
                 <div class="service-icon">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="48" height="48" rx="12" fill="url(#gradient6)"/>
@@ -243,6 +319,9 @@
                 <span class="service-learn-more">Click to learn more</span>
               </article>
               <article class="service-card" data-service="user-management" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="service-image">
+                  <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="User Management Systems" />
+                </div>
                 <div class="service-icon">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="48" height="48" rx="12" fill="url(#gradient7)"/>
@@ -264,6 +343,9 @@
                 <span class="service-learn-more">Click to learn more</span>
               </article>
               <article class="service-card" data-service="erp-crm" role="button" tabindex="0" aria-haspopup="dialog">
+                <div class="service-image">
+                  <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="ERP & CRM Solutions" />
+                </div>
                 <div class="service-icon">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="48" height="48" rx="12" fill="url(#gradient8)"/>
@@ -306,6 +388,9 @@
           </div>
           <div class="tech-grid">
             <article class="tech-card">
+              <div class="tech-image">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Frontend Development" />
+              </div>
               <div class="tech-icon">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="48" height="48" rx="12" fill="url(#techGradient1)"/>
@@ -328,6 +413,9 @@
               </ul>
             </article>
             <article class="tech-card">
+              <div class="tech-image">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Backend Development" />
+              </div>
               <div class="tech-icon">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="48" height="48" rx="12" fill="url(#techGradient2)"/>
@@ -349,6 +437,9 @@
               </ul>
             </article>
             <article class="tech-card">
+              <div class="tech-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Databases & APIs" />
+              </div>
               <div class="tech-icon">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="48" height="48" rx="12" fill="url(#techGradient3)"/>
@@ -376,6 +467,9 @@
               </ul>
             </article>
             <article class="tech-card">
+              <div class="tech-image">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cloud & DevOps" />
+              </div>
               <div class="tech-icon">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="48" height="48" rx="12" fill="url(#techGradient4)"/>
@@ -400,63 +494,6 @@
         </div>
       </section>
 
-      <section class="team" id="team">
-        <div class="section-background-image"></div>
-        <div class="section-overlay"></div>
-        <div class="container">
-          <div class="section-header">
-            <p class="eyebrow">Meet our team</p>
-            <h2>Multi-disciplinary experts aligned on outcomes.</h2>
-          </div>
-          <div class="team-grid">
-            <article class="team-card" data-team="whail" role="button" tabindex="0" aria-haspopup="dialog">
-              <p class="role">Senior Software Developer</p>
-              <h3>Whail Bin Sharif</h3>
-              <p>
-                8 years in full-stack & DevOps, specializing in Ruby on Rails,
-                JavaScript, and scalable deployments.
-              </p>
-              <span class="team-learn-more">Click to learn more</span>
-            </article>
-            <article class="team-card" data-team="usman" role="button" tabindex="0" aria-haspopup="dialog">
-              <p class="role">Senior Software Developer</p>
-              <h3>Muhammad Usman</h3>
-              <p>
-                7+ years across Node.js, React.js, AWS, and data visualization with
-                expertise in scalable APIs and infrastructure.
-              </p>
-              <span class="team-learn-more">Click to learn more</span>
-            </article>
-            <article class="team-card" data-team="suhaib" role="button" tabindex="0" aria-haspopup="dialog">
-              <p class="role">Senior Software Developer</p>
-              <h3>Suhaib Hassan</h3>
-              <p>
-                9+ years delivering .NET Core and Angular platforms with robust RESTful
-                APIs.
-              </p>
-              <span class="team-learn-more">Click to learn more</span>
-            </article>
-            <article class="team-card" data-team="farhan" role="button" tabindex="0" aria-haspopup="dialog">
-              <p class="role">Project Manager</p>
-              <h3>Farhan Khurram</h3>
-              <p>
-                7 years leading Agile, Scrum, and Waterfall initiatives with Jira and
-                Trello mastery.
-              </p>
-              <span class="team-learn-more">Click to learn more</span>
-            </article>
-            <article class="team-card" data-team="waleed" role="button" tabindex="0" aria-haspopup="dialog">
-              <p class="role">Senior QA Engineer</p>
-              <h3>Waleed Haider</h3>
-              <p>
-                8+ years in manual & automation testing (Selenium, Cypress, JUnit) with a
-                focus on CI/CD and performance.
-              </p>
-              <span class="team-learn-more">Click to learn more</span>
-            </article>
-          </div>
-        </div>
-      </section>
 
       <section class="projects" id="projects">
         <div class="section-background-image"></div>
@@ -472,6 +509,9 @@
             </button>
             <div class="project-grid" data-slider-track>
             <article class="project-card" data-project="dynamicforms" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="DynamicForms Configuration Module" />
+              </div>
               <p class="label">Web Application</p>
               <h3>DynamicForms Configuration Module</h3>
               <p class="stack">.NET Core &middot; Angular</p>
@@ -483,6 +523,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="telemarketing" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Telemarketing Platform" />
+              </div>
               <p class="label">Telemarketing Platform</p>
               <h3>Full-stack Platform</h3>
               <p class="stack">.NET Core 8 &middot; Angular &middot; ASP.NET Identity</p>
@@ -494,6 +537,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="data-processing" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Processing Platform" />
+              </div>
               <p class="label">Data Management</p>
               <h3>Data Processing Platform</h3>
               <p class="stack">.NET Core &middot; File Upload APIs</p>
@@ -505,6 +551,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="crm" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Customer Relationship Management" />
+              </div>
               <p class="label">CRM</p>
               <h3>Customer Relationship Management</h3>
               <p class="stack">.NET &middot; jQuery</p>
@@ -516,6 +565,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="schooler" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Schooler EdTech Platform" />
+              </div>
               <p class="label">EdTech</p>
               <h3>Schooler</h3>
               <p class="stack">Ruby on Rails &middot; React.js &middot; AWS S3</p>
@@ -527,6 +579,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="cirrusly" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cirrusly Cloud Security" />
+              </div>
               <p class="label">Cloud Security</p>
               <h3>Cirrusly</h3>
               <p class="stack">Ruby on Rails &middot; Stimulus &middot; Turbo</p>
@@ -538,6 +593,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="winthrop" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Winthrop Automation" />
+              </div>
               <p class="label">Automation</p>
               <h3>Winthrop</h3>
               <p class="stack">n8n &middot; Rails &middot; Sidekiq</p>
@@ -549,6 +607,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="urban-condo" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Urban Condo Real Estate" />
+              </div>
               <p class="label">Real Estate</p>
               <h3>Urban Condo</h3>
               <p class="stack">Ruby on Rails &middot; Action Cable</p>
@@ -560,6 +621,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="brief-adler" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Brief Adler E-commerce" />
+              </div>
               <p class="label">E-commerce</p>
               <h3>Brief Adler</h3>
               <p class="stack">React &middot; TypeScript &middot; AWS</p>
@@ -571,6 +635,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="qikfinds" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="QikFinds Chrome Extension" />
+              </div>
               <p class="label">Chrome Extension</p>
               <h3>QikFinds</h3>
               <p class="stack">React &middot; Node.js &middot; MongoDB</p>
@@ -582,6 +649,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="seller-repay" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Seller Repay FinTech" />
+              </div>
               <p class="label">FinTech</p>
               <h3>Seller Repay</h3>
               <p class="stack">Node.js &middot; MongoDB &middot; AWS Lambda</p>
@@ -593,6 +663,9 @@
               <span class="project-learn-more">Click to learn more</span>
             </article>
             <article class="project-card" data-project="bidx" role="button" tabindex="0" aria-haspopup="dialog">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BidX AdTech Platform" />
+              </div>
               <p class="label">AdTech</p>
               <h3>BidX</h3>
               <p class="stack">Node.js &middot; React &middot; GraphQL</p>
@@ -616,66 +689,61 @@
 
       <div class="project-modal" id="project-modal" aria-hidden="true">
         <div class="modal-backdrop" data-close-modal></div>
-        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+        <div class="modal-panel project-modal-panel" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
           <button class="modal-close" aria-label="Close project details" data-close-modal>&times;</button>
-          <span class="modal-pill" id="project-modal-domain"></span>
-          <h3 id="project-modal-title"></h3>
-          <div class="modal-section">
-            <h4>Overview</h4>
-            <p id="project-modal-overview"></p>
+          <div class="project-modal-header">
+            <span class="modal-pill" id="project-modal-domain"></span>
+            <div class="project-modal-icon" id="project-modal-icon"></div>
+            <h3 id="project-modal-title"></h3>
+            <div class="project-modal-divider"></div>
           </div>
-          <div class="modal-section">
-            <h4>Key Features</h4>
-            <ul class="modal-features" id="project-modal-features"></ul>
-          </div>
-          <div class="modal-section">
-            <h4>Technology Stack</h4>
-            <div class="modal-stack" id="project-modal-stack"></div>
+          <div class="modal-section project-modal-content">
+            <div class="modal-content-block">
+              <h4>Overview</h4>
+              <p id="project-modal-overview"></p>
+            </div>
+            <div class="modal-content-block">
+              <h4>Key Features</h4>
+              <ul class="modal-features" id="project-modal-features"></ul>
+            </div>
+            <div class="modal-content-block">
+              <h4>Technology Stack</h4>
+              <div class="modal-stack" id="project-modal-stack"></div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="service-modal" id="service-modal" aria-hidden="true">
         <div class="modal-backdrop" data-close-service-modal></div>
-        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
+        <div class="modal-panel service-modal-panel" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
           <button class="modal-close" aria-label="Close service details" data-close-service-modal>&times;</button>
-          <h3 id="service-modal-title"></h3>
-          <div class="modal-section">
-            <h4>Overview</h4>
-            <p id="service-modal-overview"></p>
+          <div class="service-modal-header">
+            <div class="service-modal-icon" id="service-modal-icon"></div>
+            <h3 id="service-modal-title"></h3>
+            <div class="service-modal-divider"></div>
+          </div>
+          <div class="modal-section service-modal-content">
+            <div class="modal-content-block">
+              <h4>Overview</h4>
+              <p id="service-modal-overview"></p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="team-modal" id="team-modal" aria-hidden="true">
-        <div class="modal-backdrop" data-close-team-modal></div>
-        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="team-modal-title">
-          <button class="modal-close" aria-label="Close team member details" data-close-team-modal>&times;</button>
-          <span class="modal-pill" id="team-modal-role"></span>
-          <h3 id="team-modal-title"></h3>
-          <div class="modal-section">
-            <h4>About</h4>
-            <p id="team-modal-overview"></p>
-          </div>
-          <div class="modal-section">
-            <h4>Expertise & Skills</h4>
-            <ul class="modal-features" id="team-modal-skills"></ul>
-          </div>
-        </div>
-      </div>
 
       <div class="why-us-modal" id="why-us-modal" aria-hidden="true">
         <div class="modal-backdrop" data-close-why-us-modal></div>
-        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="why-us-modal-title">
+        <div class="modal-panel why-us-modal-panel" role="dialog" aria-modal="true" aria-labelledby="why-us-modal-title">
           <button class="modal-close" aria-label="Close why us details" data-close-why-us-modal>&times;</button>
-          <h3 id="why-us-modal-title"></h3>
-          <div class="modal-section">
-            <h4>Overview</h4>
-            <p id="why-us-modal-intro"></p>
+          <div class="why-us-modal-header">
+            <div class="why-us-modal-icon" id="why-us-modal-icon"></div>
+            <h3 id="why-us-modal-title"></h3>
+            <div class="why-us-modal-divider"></div>
           </div>
-          <div class="modal-section">
-            <h4>Strategic Pillars</h4>
-            <div class="why-us-pillars" id="why-us-modal-pillars"></div>
+          <div class="modal-section why-us-modal-content">
+            <p id="why-us-modal-description"></p>
           </div>
         </div>
       </div>
@@ -684,20 +752,88 @@
         <div class="section-background-image"></div>
         <div class="section-overlay"></div>
         <div class="container">
-          <div class="section-header">
-            <p class="eyebrow">Why partner with DevLoop?</p>
-            <h2>Innovation that is accountable to results.</h2>
+          <div class="why-us-cta">
+            <span>~ Why choose Us? ~</span>
           </div>
-          <div class="why-us-single-card">
-            <article class="why-us-card">
-              <h3>Why Partner with DevLoop?</h3>
-              <ul>
-                <li>Innovation-driven approach with modern technologies.</li>
-                <li>Agile delivery models that adapt to change.</li>
-                <li>Client-focused mindset and long-term partnerships.</li>
-                <li>Laser-focus on scalability, security, and business impact.</li>
-              </ul>
-              <span class="why-us-learn-more" data-open-why-us-modal role="button" tabindex="0">Click to learn more</span>
+          <div class="why-us-header">
+            <h2>Innovation that is accountable to <span class="highlight">results</span>.</h2>
+            <p>
+              In a digital world that is constantly evolving, choosing the right partner to enhance your online presence and drive your business growth is crucial. At DevLoop, we pride ourselves on being the top choice for businesses seeking exceptional software solutions. Let us introduce ourselves and highlight why choosing us as your trusted partner can make all the difference.
+            </p>
+          </div>
+          <div class="why-us-features">
+            <article class="why-us-feature" data-why-us-point="innovation" role="button" tabindex="0">
+              <div class="why-us-feature-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="30" fill="url(#whyUsGradient1)" stroke="url(#whyUsGradient1)" stroke-width="2"/>
+                  <path d="M32 20L40 28L32 36L24 28L32 20Z" fill="white"/>
+                  <path d="M20 32L28 40L36 32L28 24L20 32Z" fill="white"/>
+                  <path d="M32 44L40 36L32 28L24 36L32 44Z" fill="white"/>
+                  <defs>
+                    <linearGradient id="whyUsGradient1" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#8b5cf6"/>
+                      <stop offset="1" stop-color="#2563eb"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <h3>Innovation-Driven Approach</h3>
+              <div class="why-us-feature-line"></div>
+            </article>
+            <article class="why-us-feature" data-why-us-point="agile" role="button" tabindex="0">
+              <div class="why-us-feature-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="30" fill="url(#whyUsGradient2)" stroke="url(#whyUsGradient2)" stroke-width="2"/>
+                  <circle cx="32" cy="32" r="12" fill="white"/>
+                  <circle cx="32" cy="20" r="4" fill="white"/>
+                  <circle cx="44" cy="32" r="4" fill="white"/>
+                  <circle cx="32" cy="44" r="4" fill="white"/>
+                  <circle cx="20" cy="32" r="4" fill="white"/>
+                  <defs>
+                    <linearGradient id="whyUsGradient2" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#60a5fa"/>
+                      <stop offset="1" stop-color="#8b5cf6"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <h3>Agile Delivery Models</h3>
+              <div class="why-us-feature-line"></div>
+            </article>
+            <article class="why-us-feature" data-why-us-point="partnership" role="button" tabindex="0">
+              <div class="why-us-feature-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="30" fill="url(#whyUsGradient3)" stroke="url(#whyUsGradient3)" stroke-width="2"/>
+                  <path d="M32 18C28.686 18 26 20.686 26 24C26 27.314 28.686 30 32 30C35.314 30 38 27.314 38 24C38 20.686 35.314 18 32 18Z" fill="white"/>
+                  <path d="M20 40C20 35.582 23.582 32 28 32H36C40.418 32 44 35.582 44 40V42H20V40Z" fill="white"/>
+                  <defs>
+                    <linearGradient id="whyUsGradient3" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#8b5cf6"/>
+                      <stop offset="1" stop-color="#2563eb"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <h3>Long-Term Partnerships</h3>
+              <div class="why-us-feature-line"></div>
+            </article>
+            <article class="why-us-feature" data-why-us-point="scale" role="button" tabindex="0">
+              <div class="why-us-feature-icon">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="30" fill="url(#whyUsGradient4)" stroke="url(#whyUsGradient4)" stroke-width="2"/>
+                  <circle cx="32" cy="32" r="16" stroke="white" stroke-width="3"/>
+                  <circle cx="32" cy="32" r="8" fill="white"/>
+                  <path d="M32 16L32 10M32 54L32 48M16 32L10 32M54 32L48 32" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                  <defs>
+                    <linearGradient id="whyUsGradient4" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#2563eb"/>
+                      <stop offset="1" stop-color="#8b5cf6"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <h3>Scalability & Security</h3>
+              <div class="why-us-feature-line"></div>
             </article>
           </div>
         </div>

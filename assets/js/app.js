@@ -8,12 +8,42 @@ navToggle?.addEventListener('click', () => {
   nav?.classList.toggle('open');
 });
 
-const navLinks = document.querySelectorAll('.main-nav a:not(.btn)');
-navLinks.forEach((link) => {
+// Get all nav links for active state and mobile menu closing
+const allNavLinks = document.querySelectorAll('.main-nav a');
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (event) => {
+  if (nav && navToggle && nav.classList.contains('open')) {
+    const isClickInsideNav = nav.contains(event.target);
+    const isClickOnToggle = navToggle.contains(event.target);
+    
+    if (!isClickInsideNav && !isClickOnToggle) {
+      nav.classList.remove('open');
+    }
+  }
+});
+
+// Close mobile menu when clicking a nav link
+allNavLinks.forEach((link) => {
   link.addEventListener('click', () => {
-    navLinks.forEach((item) => item.classList.remove('active'));
-    link.classList.add('active');
+    if (window.innerWidth <= 768) {
+      nav?.classList.remove('open');
+    }
   });
+});
+
+// Active nav link handling
+allNavLinks.forEach((link) => {
+  if (!link.classList.contains('btn')) {
+    link.addEventListener('click', () => {
+      allNavLinks.forEach((item) => {
+        if (!item.classList.contains('btn')) {
+          item.classList.remove('active');
+        }
+      });
+      link.classList.add('active');
+    });
+  }
 });
 
 const projectDetails = {
@@ -185,6 +215,89 @@ const projectDomain = document.getElementById('project-modal-domain');
 const projectOverview = document.getElementById('project-modal-overview');
 const projectStack = document.getElementById('project-modal-stack');
 const projectFeatureList = document.getElementById('project-modal-features');
+const projectIcon = document.getElementById('project-modal-icon');
+
+const getProjectIcon = (domain) => {
+  const iconMap = {
+    'Web Application': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad1)" stroke="url(#projectGrad1)" stroke-width="2"/>
+      <rect x="16" y="20" width="32" height="24" rx="4" fill="white"/>
+      <path d="M20 24H44M20 28H44M20 32H36" stroke="url(#projectGrad1)" stroke-width="2" stroke-linecap="round"/>
+      <defs><linearGradient id="projectGrad1" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+    </svg>`,
+    'Telemarketing / Business Apps': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad2)" stroke="url(#projectGrad2)" stroke-width="2"/>
+      <path d="M32 22C28.686 22 26 24.686 26 28C26 31.314 28.686 34 32 34C35.314 34 38 31.314 38 28C38 24.686 35.314 22 32 22Z" fill="white"/>
+      <path d="M20 44C20 39.582 23.582 36 28 36H36C40.418 36 44 39.582 44 44V46H20V44Z" fill="white"/>
+      <defs><linearGradient id="projectGrad2" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#60a5fa"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+    </svg>`,
+    'Data Management': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad3)" stroke="url(#projectGrad3)" stroke-width="2"/>
+      <rect x="18" y="18" width="28" height="28" rx="2" fill="white"/>
+      <path d="M22 26H42M22 32H42M22 38H36" stroke="url(#projectGrad3)" stroke-width="2" stroke-linecap="round"/>
+      <defs><linearGradient id="projectGrad3" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>
+    </svg>`,
+    'CRM / Business Apps': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad4)" stroke="url(#projectGrad4)" stroke-width="2"/>
+      <path d="M32 20L40 28L32 36L24 28L32 20Z" fill="white"/>
+      <circle cx="32" cy="32" r="8" fill="url(#projectGrad4)"/>
+      <defs><linearGradient id="projectGrad4" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+    </svg>`,
+    'Education Technology': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad5)" stroke="url(#projectGrad5)" stroke-width="2"/>
+      <path d="M32 18L42 26V38L32 44L22 38V26L32 18Z" fill="white"/>
+      <path d="M28 30L32 28L36 30V34L32 36L28 34V30Z" fill="url(#projectGrad5)"/>
+      <defs><linearGradient id="projectGrad5" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+    </svg>`,
+    'Cloud Security & Compliance': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad6)" stroke="url(#projectGrad6)" stroke-width="2"/>
+      <path d="M24 28C20.686 28 18 30.686 18 34C18 37.314 20.686 40 24 40H40C43.314 40 46 37.314 46 34C46 30.686 43.314 28 40 28C39.448 28 39 27.552 39 27C39 23.686 36.314 21 33 21C30.794 21 28.794 22.206 27.794 24.206C26.206 22.794 24.206 22 22 22C18.686 22 16 24.686 16 28C16 31.314 18.686 34 22 34H24C24.552 34 25 33.552 25 33C25 30.794 26.794 29 29 29C31.206 29 33 30.794 33 33C33 33.552 33.448 34 34 34H40C43.314 34 46 31.314 46 28C46 24.686 43.314 22 40 22C38.794 22 37.794 22.794 37.206 24.206C35.794 22.206 33.794 21 31.5 21C28.186 21 25.5 23.686 25.5 27C25.5 27.552 25.948 28 26.5 28H24Z" fill="white"/>
+      <path d="M32 28L36 32L32 36L28 32L32 28Z" fill="url(#projectGrad6)"/>
+      <defs><linearGradient id="projectGrad6" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#60a5fa"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+    </svg>`,
+    'Business Process Automation': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad7)" stroke="url(#projectGrad7)" stroke-width="2"/>
+      <circle cx="32" cy="32" r="16" stroke="white" stroke-width="3"/>
+      <circle cx="32" cy="32" r="8" fill="white"/>
+      <path d="M32 20L32 14M32 50L32 44M20 32L14 32M50 32L44 32" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <defs><linearGradient id="projectGrad7" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+    </svg>`,
+    'Real Estate Platform': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad8)" stroke="url(#projectGrad8)" stroke-width="2"/>
+      <path d="M32 18L42 28V46H22V28L32 18Z" fill="white"/>
+      <path d="M26 34H38M26 38H38M26 42H34" stroke="url(#projectGrad8)" stroke-width="2" stroke-linecap="round"/>
+      <defs><linearGradient id="projectGrad8" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+    </svg>`,
+    'E-commerce & Campaign Ops': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad9)" stroke="url(#projectGrad9)" stroke-width="2"/>
+      <path d="M20 24L28 20L36 24V40L28 44L20 40V24Z" fill="white"/>
+      <path d="M24 28H32M24 32H32M24 36H30" stroke="url(#projectGrad9)" stroke-width="2" stroke-linecap="round"/>
+      <defs><linearGradient id="projectGrad9" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+    </svg>`,
+    'Product Research & Automation': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad10)" stroke="url(#projectGrad10)" stroke-width="2"/>
+      <circle cx="32" cy="32" r="12" stroke="white" stroke-width="3"/>
+      <path d="M32 18L32 12M32 52L32 46M18 32L12 32M52 32L46 32" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="32" cy="24" r="2" fill="white"/>
+      <defs><linearGradient id="projectGrad10" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>
+    </svg>`,
+    'Financial Services & Automation': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad11)" stroke="url(#projectGrad11)" stroke-width="2"/>
+      <path d="M20 32H44M32 20V44" stroke="white" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="32" cy="32" r="8" fill="white"/>
+      <defs><linearGradient id="projectGrad11" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+    </svg>`,
+    'AdTech & Data Analytics': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#projectGrad12)" stroke="url(#projectGrad12)" stroke-width="2"/>
+      <path d="M18 26H46M18 32H46M18 38H40" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="14" cy="26" r="2" fill="white"/>
+      <circle cx="14" cy="32" r="2" fill="white"/>
+      <circle cx="14" cy="38" r="2" fill="white"/>
+      <defs><linearGradient id="projectGrad12" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>
+    </svg>`,
+  };
+  return iconMap[domain] || iconMap['Web Application'];
+};
 
 const closeModal = () => {
   projectModal?.classList.remove('active');
@@ -198,6 +311,9 @@ const openModal = (key) => {
   projectTitle.textContent = project.title;
   projectDomain.textContent = project.domain;
   projectOverview.textContent = project.overview;
+  if (projectIcon) {
+    projectIcon.innerHTML = getProjectIcon(project.domain);
+  }
   projectStack.innerHTML = '';
   project.stack.forEach((tech) => {
     const badge = document.createElement('span');
@@ -287,6 +403,67 @@ const serviceDetails = {
 const serviceModal = document.getElementById('service-modal');
 const serviceTitle = document.getElementById('service-modal-title');
 const serviceOverview = document.getElementById('service-modal-overview');
+const serviceIcon = document.getElementById('service-modal-icon');
+
+const getServiceIcon = (key) => {
+  const iconMap = {
+    'web-app': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#serviceGrad1)" stroke="url(#serviceGrad1)" stroke-width="2"/>
+      <rect x="16" y="20" width="32" height="24" rx="4" fill="white"/>
+      <path d="M20 24H44M20 28H44M20 32H36" stroke="url(#serviceGrad1)" stroke-width="2" stroke-linecap="round"/>
+      <defs><linearGradient id="serviceGrad1" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+    </svg>`,
+    'cloud': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#serviceGrad2)" stroke="url(#serviceGrad2)" stroke-width="2"/>
+      <path d="M24 28C20.686 28 18 30.686 18 34C18 37.314 20.686 40 24 40H40C43.314 40 46 37.314 46 34C46 30.686 43.314 28 40 28C39.448 28 39 27.552 39 27C39 23.686 36.314 21 33 21C30.794 21 28.794 22.206 27.794 24.206C26.206 22.794 24.206 22 22 22C18.686 22 16 24.686 16 28C16 31.314 18.686 34 22 34H24C24.552 34 25 33.552 25 33C25 30.794 26.794 29 29 29C31.206 29 33 30.794 33 33C33 33.552 33.448 34 34 34H40C43.314 34 46 31.314 46 28C46 24.686 43.314 22 40 22C38.794 22 37.794 22.794 37.206 24.206C35.794 22.206 33.794 21 31.5 21C28.186 21 25.5 23.686 25.5 27C25.5 27.552 25.948 28 26.5 28H24Z" fill="white"/>
+      <defs><linearGradient id="serviceGrad2" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#60a5fa"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+    </svg>`,
+    'api': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#serviceGrad3)" stroke="url(#serviceGrad3)" stroke-width="2"/>
+      <path d="M20 26H28V34H20V26ZM36 26H44V34H36V26ZM28 26H36V34H28V26ZM20 38H28V46H20V38ZM36 38H44V46H36V38ZM28 38H36V46H28V38Z" fill="white"/>
+      <circle cx="18" cy="18" r="2" fill="white"/>
+      <circle cx="32" cy="18" r="2" fill="white"/>
+      <circle cx="46" cy="18" r="2" fill="white"/>
+      <defs><linearGradient id="serviceGrad3" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+    </svg>`,
+    'data-processing': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#serviceGrad4)" stroke="url(#serviceGrad4)" stroke-width="2"/>
+      <rect x="18" y="26" width="28" height="4" rx="2" fill="white"/>
+      <rect x="18" y="34" width="28" height="4" rx="2" fill="white"/>
+      <rect x="18" y="42" width="24" height="4" rx="2" fill="white"/>
+      <circle cx="14" cy="28" r="2" fill="white"/>
+      <circle cx="14" cy="36" r="2" fill="white"/>
+      <circle cx="14" cy="44" r="2" fill="white"/>
+      <defs><linearGradient id="serviceGrad4" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>
+    </svg>`,
+    'process-optimization': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#serviceGrad5)" stroke="url(#serviceGrad5)" stroke-width="2"/>
+      <circle cx="32" cy="32" r="16" stroke="white" stroke-width="3"/>
+      <circle cx="32" cy="32" r="8" fill="white"/>
+      <path d="M32 20L32 14M32 50L32 44M20 32L14 32M50 32L44 32" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <defs><linearGradient id="serviceGrad5" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+    </svg>`,
+    'devops': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#serviceGrad6)" stroke="url(#serviceGrad6)" stroke-width="2"/>
+      <path d="M32 18L42 28V44L32 50L22 44V28L32 18ZM38 30.5L32 26L26 30.5V41.5L32 45.5L38 41.5V30.5Z" fill="white"/>
+      <defs><linearGradient id="serviceGrad6" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+    </svg>`,
+    'user-management': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#serviceGrad7)" stroke="url(#serviceGrad7)" stroke-width="2"/>
+      <circle cx="32" cy="24" r="6" fill="white"/>
+      <path d="M20 40C20 35.582 23.582 32 28 32H36C40.418 32 44 35.582 44 40V42H20V40Z" fill="white"/>
+      <defs><linearGradient id="serviceGrad7" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+    </svg>`,
+    'erp-crm': `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#serviceGrad8)" stroke="url(#serviceGrad8)" stroke-width="2"/>
+      <rect x="20" y="26" width="24" height="20" rx="2" fill="white"/>
+      <path d="M24 30H40M24 34H40M24 38H36" stroke="url(#serviceGrad8)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M18 24H46V26H18V24Z" fill="white"/>
+      <defs><linearGradient id="serviceGrad8" x1="0" y1="0" x2="64" y2="64"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+    </svg>`,
+  };
+  return iconMap[key] || iconMap['web-app'];
+};
 
 const closeServiceModal = () => {
   serviceModal?.classList.remove('active');
@@ -299,6 +476,9 @@ const openServiceModal = (key) => {
 
   serviceTitle.textContent = service.title;
   serviceOverview.textContent = service.overview;
+  if (serviceIcon) {
+    serviceIcon.innerHTML = getServiceIcon(key);
+  }
 
   serviceModal.classList.add('active');
   document.body.classList.add('modal-open');
@@ -460,82 +640,118 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// Why Us Modal
-const whyUsDetails = {
-  title: 'Why Partner with DevLoop?',
-  intro:
-    'We combine strategic advisory, disciplined delivery, and senior engineering talent to help organizations ship smarter, scale faster, and operate with confidence.',
-  pillars: [
-    {
-      title: 'Innovation-driven execution',
-      description:
-        'We continuously evaluate emerging frameworks, cloud services, and best practices—adopting the ones that create measurable competitive advantage. Every engagement blends modern architectures (Next.js, Node.js, .NET, cloud-native) with pragmatic delivery so you get solutions that are current today and adaptable tomorrow.',
-    },
-    {
-      title: 'Agile, transparent delivery',
-      description:
-        'Engagements run in focused sprints with clear milestones, stakeholder demos, and rapid feedback loops. Our program management playbook pairs Scrum/Kanban ceremonies with tools such as Jira and Linear so you always see what is shipping next and how it maps back to your objectives.',
-    },
-    {
-      title: 'Partnership mindset',
-      description:
-        'We operate as an embedded extension of your team—learning the nuances of your business, proactively surfacing risks, and staying engaged after launch. The goal is to build trust through accountability, not just deliverables.',
-    },
-    {
-      title: 'Scale, security, and impact',
-      description:
-        'Architectures are designed for growth from day one with elastic infrastructure, rigorous performance testing, and observability baked in. Security is enforced through zero-trust design, encryption standards, and regular audits so compliance is never in question.',
-    },
-  ],
+// Why Us Modal - Individual Points
+const whyUsPoints = {
+  innovation: {
+    title: 'Innovation-Driven Approach',
+    description:
+      'We continuously evaluate emerging frameworks, cloud services, and best practices—adopting the ones that create measurable competitive advantage. Every engagement blends modern architectures (Next.js, Node.js, .NET, cloud-native) with pragmatic delivery so you get solutions that are current today and adaptable tomorrow.',
+    icon: `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#whyUsModalGradient1)" stroke="url(#whyUsModalGradient1)" stroke-width="2"/>
+      <path d="M32 20L40 28L32 36L24 28L32 20Z" fill="white"/>
+      <path d="M20 32L28 40L36 32L28 24L20 32Z" fill="white"/>
+      <path d="M32 44L40 36L32 28L24 36L32 44Z" fill="white"/>
+      <defs>
+        <linearGradient id="whyUsModalGradient1" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#8b5cf6"/>
+          <stop offset="1" stop-color="#2563eb"/>
+        </linearGradient>
+      </defs>
+    </svg>`,
+  },
+  agile: {
+    title: 'Agile Delivery Models',
+    description:
+      'Engagements run in focused sprints with clear milestones, stakeholder demos, and rapid feedback loops. Our program management playbook pairs Scrum/Kanban ceremonies with tools such as Jira and Linear so you always see what is shipping next and how it maps back to your objectives.',
+    icon: `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#whyUsModalGradient2)" stroke="url(#whyUsModalGradient2)" stroke-width="2"/>
+      <circle cx="32" cy="32" r="12" fill="white"/>
+      <circle cx="32" cy="20" r="4" fill="white"/>
+      <circle cx="44" cy="32" r="4" fill="white"/>
+      <circle cx="32" cy="44" r="4" fill="white"/>
+      <circle cx="20" cy="32" r="4" fill="white"/>
+      <defs>
+        <linearGradient id="whyUsModalGradient2" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#60a5fa"/>
+          <stop offset="1" stop-color="#8b5cf6"/>
+        </linearGradient>
+      </defs>
+    </svg>`,
+  },
+  partnership: {
+    title: 'Long-Term Partnerships',
+    description:
+      'We operate as an embedded extension of your team—learning the nuances of your business, proactively surfacing risks, and staying engaged after launch. The goal is to build trust through accountability, not just deliverables.',
+    icon: `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#whyUsModalGradient3)" stroke="url(#whyUsModalGradient3)" stroke-width="2"/>
+      <path d="M32 18C28.686 18 26 20.686 26 24C26 27.314 28.686 30 32 30C35.314 30 38 27.314 38 24C38 20.686 35.314 18 32 18Z" fill="white"/>
+      <path d="M20 40C20 35.582 23.582 32 28 32H36C40.418 32 44 35.582 44 40V42H20V40Z" fill="white"/>
+      <defs>
+        <linearGradient id="whyUsModalGradient3" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#8b5cf6"/>
+          <stop offset="1" stop-color="#2563eb"/>
+        </linearGradient>
+      </defs>
+    </svg>`,
+  },
+  scale: {
+    title: 'Scalability & Security',
+    description:
+      'Architectures are designed for growth from day one with elastic infrastructure, rigorous performance testing, and observability baked in. Security is enforced through zero-trust design, encryption standards, and regular audits so compliance is never in question.',
+    icon: `<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="32" cy="32" r="30" fill="url(#whyUsModalGradient4)" stroke="url(#whyUsModalGradient4)" stroke-width="2"/>
+      <circle cx="32" cy="32" r="16" stroke="white" stroke-width="3"/>
+      <circle cx="32" cy="32" r="8" fill="white"/>
+      <path d="M32 16L32 10M32 54L32 48M16 32L10 32M54 32L48 32" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <defs>
+        <linearGradient id="whyUsModalGradient4" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#2563eb"/>
+          <stop offset="1" stop-color="#8b5cf6"/>
+        </linearGradient>
+      </defs>
+    </svg>`,
+  },
 };
 
 const whyUsModal = document.getElementById('why-us-modal');
 const whyUsTitle = document.getElementById('why-us-modal-title');
-const whyUsIntro = document.getElementById('why-us-modal-intro');
-const whyUsPillars = document.getElementById('why-us-modal-pillars');
+const whyUsDescription = document.getElementById('why-us-modal-description');
+const whyUsIcon = document.getElementById('why-us-modal-icon');
 
 const closeWhyUsModal = () => {
   whyUsModal?.classList.remove('active');
   document.body.classList.remove('modal-open');
 };
 
-const openWhyUsModal = () => {
-  if (!whyUsDetails || !whyUsModal) return;
+const openWhyUsModal = (pointKey) => {
+  const point = whyUsPoints[pointKey];
+  if (!point || !whyUsModal) return;
 
-  whyUsTitle.textContent = whyUsDetails.title;
-  if (whyUsIntro) {
-    whyUsIntro.textContent = whyUsDetails.intro;
+  whyUsTitle.textContent = point.title;
+  if (whyUsDescription) {
+    whyUsDescription.textContent = point.description;
   }
-  if (whyUsPillars) {
-    whyUsPillars.innerHTML = whyUsDetails.pillars
-      .map(
-        (pillar) => `
-          <article class="why-us-pillar">
-            <h5>${pillar.title}</h5>
-            <p>${pillar.description}</p>
-          </article>
-        `,
-      )
-      .join('');
+  if (whyUsIcon) {
+    whyUsIcon.innerHTML = point.icon;
   }
 
   whyUsModal.classList.add('active');
   document.body.classList.add('modal-open');
 };
 
-const whyUsLearnMoreBtn = document.querySelector('[data-open-why-us-modal]');
-if (whyUsLearnMoreBtn) {
-  whyUsLearnMoreBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    openWhyUsModal();
-  });
-  whyUsLearnMoreBtn.addEventListener('keydown', (event) => {
+// Add click handlers to each why-us feature
+document.querySelectorAll('.why-us-feature').forEach((feature) => {
+  const pointKey = feature.getAttribute('data-why-us-point');
+  if (!pointKey) return;
+
+  feature.addEventListener('click', () => openWhyUsModal(pointKey));
+  feature.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      openWhyUsModal();
+      openWhyUsModal(pointKey);
     }
   });
-}
+});
 
 whyUsModal?.addEventListener('click', (event) => {
   if (event.target instanceof HTMLElement && event.target.dataset.closeWhyUsModal !== undefined) {
@@ -556,10 +772,19 @@ if (projectSlider) {
   const nextBtn = projectSlider.querySelector('.slider-btn.next');
   const cards = track ? Array.from(track.querySelectorAll('.project-card')) : [];
   let currentIndex = 0;
-  const cardsPerView = 3;
+  
+  const getCardsPerView = () => {
+    const width = window.innerWidth;
+    if (width <= 480) return 1;
+    if (width <= 768) return 2;
+    return 3;
+  };
+  
+  let cardsPerView = getCardsPerView();
 
   const scrollToGroup = (groupIndex, instant = false) => {
     if (!track || !cards.length) return;
+    cardsPerView = getCardsPerView();
     const maxGroups = Math.ceil(cards.length / cardsPerView);
     const clamped = Math.max(0, Math.min(groupIndex, maxGroups - 1));
     const targetIndex = clamped * cardsPerView;
@@ -576,6 +801,7 @@ if (projectSlider) {
 
   const updateButtons = () => {
     if (!prevBtn || !nextBtn) return;
+    cardsPerView = getCardsPerView();
     const maxGroups = Math.ceil(cards.length / cardsPerView);
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex >= maxGroups - 1;
@@ -584,6 +810,7 @@ if (projectSlider) {
   const progressBar = document.getElementById('project-progress-bar');
   const updateProgress = () => {
     if (!track || !progressBar || !cards.length) return;
+    cardsPerView = getCardsPerView();
     const maxGroups = Math.ceil(cards.length / cardsPerView);
     const progress = ((currentIndex + 1) / maxGroups) * 100;
     progressBar.style.width = `${progress}%`;
@@ -597,7 +824,10 @@ if (projectSlider) {
   prevBtn?.addEventListener('click', () => scrollToGroupWithProgress(currentIndex - 1));
   nextBtn?.addEventListener('click', () => scrollToGroupWithProgress(currentIndex + 1));
 
-  window.addEventListener('resize', () => scrollToGroupWithProgress(currentIndex, true));
+  window.addEventListener('resize', () => {
+    cardsPerView = getCardsPerView();
+    scrollToGroupWithProgress(0, true);
+  });
   scrollToGroupWithProgress(0, true);
   updateButtons();
   updateProgress();
@@ -611,10 +841,19 @@ if (servicesSlider) {
   const nextBtn = servicesSlider.querySelector('.slider-btn.next');
   const cards = track ? Array.from(track.querySelectorAll('article')) : [];
   let currentIndex = 0;
-  const cardsPerView = 3;
+  
+  const getCardsPerView = () => {
+    const width = window.innerWidth;
+    if (width <= 480) return 1;
+    if (width <= 768) return 2;
+    return 3;
+  };
+  
+  let cardsPerView = getCardsPerView();
 
   const scrollToGroup = (groupIndex, instant = false) => {
     if (!track || !cards.length) return;
+    cardsPerView = getCardsPerView();
     const maxGroups = Math.ceil(cards.length / cardsPerView);
     const clamped = Math.max(0, Math.min(groupIndex, maxGroups - 1));
     const targetIndex = clamped * cardsPerView;
@@ -631,6 +870,7 @@ if (servicesSlider) {
 
   const updateButtons = () => {
     if (!prevBtn || !nextBtn) return;
+    cardsPerView = getCardsPerView();
     const maxGroups = Math.ceil(cards.length / cardsPerView);
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex >= maxGroups - 1;
@@ -639,6 +879,7 @@ if (servicesSlider) {
   const progressBar = document.getElementById('services-progress-bar');
   const updateProgress = () => {
     if (!track || !progressBar || !cards.length) return;
+    cardsPerView = getCardsPerView();
     const maxGroups = Math.ceil(cards.length / cardsPerView);
     const progress = ((currentIndex + 1) / maxGroups) * 100;
     progressBar.style.width = `${progress}%`;
@@ -652,7 +893,10 @@ if (servicesSlider) {
   prevBtn?.addEventListener('click', () => scrollToGroupWithProgress(currentIndex - 1));
   nextBtn?.addEventListener('click', () => scrollToGroupWithProgress(currentIndex + 1));
 
-  window.addEventListener('resize', () => scrollToGroupWithProgress(currentIndex, true));
+  window.addEventListener('resize', () => {
+    cardsPerView = getCardsPerView();
+    scrollToGroupWithProgress(0, true);
+  });
   scrollToGroupWithProgress(0, true);
   updateButtons();
   updateProgress();
