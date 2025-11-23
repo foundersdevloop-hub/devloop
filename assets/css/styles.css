@@ -166,13 +166,15 @@ p.lead {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   backdrop-filter: blur(20px);
   background: #2d2d2d;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 1000;
-  position: relative;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -1604,6 +1606,14 @@ body.modal-open {
   text-transform: uppercase;
   font-size: 0.9rem;
   color: var(--brand);
+  border-bottom: none;
+  border: none;
+}
+
+.modal-section h4::after,
+.modal-section h4::before {
+  display: none;
+  content: none;
 }
 
 .modal-section p {
@@ -2137,6 +2147,15 @@ body.modal-open {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.9rem;
+  border-bottom: none;
+  border: none;
+  padding-left: 32px;
+}
+
+.service-modal-content h4::after,
+.service-modal-content h4::before {
+  display: none;
+  content: none;
 }
 
 .service-modal-content p {
@@ -2147,6 +2166,9 @@ body.modal-open {
   padding-left: 32px;
   position: relative;
   animation: fadeInUp 0.5s ease-out 0.5s both;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: justify;
 }
 
 .service-modal-content p::first-letter {
@@ -2154,9 +2176,10 @@ body.modal-open {
   font-weight: 700;
   color: var(--brand);
   float: left;
-  line-height: 1;
+  line-height: 1.2;
   margin-right: 8px;
-  margin-top: 4px;
+  margin-top: 0;
+  padding-top: 2px;
 }
 
 .service-modal .modal-backdrop {
@@ -2359,6 +2382,14 @@ body.modal-open {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.9rem;
+  border-bottom: none;
+  border: none;
+}
+
+.project-modal-content h4::after,
+.project-modal-content h4::before {
+  display: none;
+  content: none;
 }
 
 .project-modal-content p {
@@ -2366,6 +2397,9 @@ body.modal-open {
   line-height: 1.9;
   color: var(--muted);
   margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: justify;
 }
 
 .project-modal-content p::first-letter {
@@ -2373,9 +2407,10 @@ body.modal-open {
   font-weight: 700;
   color: var(--brand);
   float: left;
-  line-height: 1;
+  line-height: 1.2;
   margin-right: 8px;
-  margin-top: 4px;
+  margin-top: 0;
+  padding-top: 2px;
 }
 
 .project-modal .modal-backdrop {
@@ -3100,6 +3135,10 @@ body.modal-open {
     left: 24px;
     top: 32px;
     bottom: 32px;
+  }
+
+  .service-modal-content h4 {
+    padding-left: 24px;
   }
 
   .service-modal-content p {
